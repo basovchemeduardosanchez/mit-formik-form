@@ -1,17 +1,44 @@
 import React from "react";
 // TODO: import useFormik from formik library
-import { useFormik } from "formik";
+import { Formik, useFormik } from "formik";
 
 function App() {
   // TODO: add a const called formik assigned to useFormik()
-  const formik = useFormik();
+  const formik = useFormik( {
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  } );
 
   return (
     <div>
-      <p>
-        The app is ready! You can proceed with the task instructions. TODO:
-        build you form here.
-      </p>
+      <form onSubmit={formik.handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+        ></input>
+        <br></br>
+        <label htmlFor="password">Password:</label>
+        {/* autoComplete attribute Based on the console suggestions */}
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autoComplete="off"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+        ></input>
+        <br></br>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }

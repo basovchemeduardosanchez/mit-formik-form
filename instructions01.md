@@ -2,6 +2,12 @@
 
 _Note: This lesson takes a long time to load because it has to download the dependencies and then start the React development server._
 
+Start the application by executing `npm start`
+
+Had an error `Uncaught ReferenceError: process is not defined` and added `npm i -D react-error-overlay@6.0.9` according to <https://stackoverflow.com/questions/70368760/react-uncaught-referenceerror-process-is-not-defined>
+
+Had error `Uncaught TypeError: Cannot read properties of undefined (reading 'validateOnChange')` Added code from tutorial <https://formik.org/docs/tutorial> to overcome this
+
 **Formik** is a small library that helps you with the three most annoying aspects of creating forms in React:
 
 - Getting values in and out of the form state
