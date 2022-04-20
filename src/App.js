@@ -9,6 +9,19 @@ function App() {
       email: '',
       password: '',
     },
+    validate: values => {
+      const errors = {};
+
+      if (!values.email) {
+        errors.email = 'Required';
+      }
+
+      if (!values.password) {
+        errors.password = 'Required';
+      }
+
+      return errors;
+    },
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -25,6 +38,7 @@ function App() {
           onChange={formik.handleChange}
           value={formik.values.email}
         ></input>
+        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
         <br></br>
         <label htmlFor="password">Password:</label>
         {/* autoComplete attribute Based on the console suggestions */}
@@ -36,6 +50,7 @@ function App() {
           onChange={formik.handleChange}
           value={formik.values.password}
         ></input>
+        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
         <br></br>
         <button type="submit">Submit</button>
       </form>
