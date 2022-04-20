@@ -13,46 +13,47 @@ function App() {
       const errors = {};
 
       if (!values.email) {
-        errors.email = 'Required';
+        errors.email = 'Field required';
+      } else if (!values.email.includes('@')) {
+        errors.email = 'Username should be an e-mail'
       }
-
       if (!values.password) {
-        errors.password = 'Required';
+        errors.password = 'Field required';
       }
 
       return errors;
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      alert( 'Login Successful' );
     },
   } );
 
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="emailField">Email:</label>
         <input
-          id="email"
+          id="emailField"
           name="email"
           type="email"
           onChange={formik.handleChange}
           value={formik.values.email}
         ></input>
-        {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+        {formik.errors.email ? <div id="emailError">{formik.errors.email}</div> : null}
         <br></br>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="pswField">Password:</label>
         {/* autoComplete attribute Based on the console suggestions */}
         <input
-          id="password"
+          id="pswField"
           name="password"
           type="password"
           autoComplete="off"
           onChange={formik.handleChange}
           value={formik.values.password}
         ></input>
-        {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+        {formik.errors.password ? <div id="pswError">{formik.errors.password}</div> : null}
         <br></br>
-        <button type="submit">Submit</button>
+        <button id="submitBtn" type="submit">Submit</button>
       </form>
     </div>
   );
